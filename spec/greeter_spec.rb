@@ -24,6 +24,18 @@ describe Greeter do
     it 'falls back to the 0 argument greet method' do
       expect(@result).to eq(@greeter.greet)
     end
+    context 'given something other than a string' do
+      before(:each) do
+        @name = []
+        @result = @greeter.greet_by_name @name
+      end
+      it 'returns a string' do
+        expect(@result.class).to be(String)
+      end
+      it 'falls back to 0 argument greet method' do
+        expect(@result).to eq(@greeter.greet)
+      end
+    end
     context 'given a name' do
       before(:each) do
         @name = 'Bob'
