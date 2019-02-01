@@ -51,6 +51,27 @@ describe Greeter do
     end
   end
 
+  describe 'Greeter::greeting_styles' do
+    context 'given no style' do
+      it 'returns a Hash of greeting styles' do
+        expect(Greeter.greeting_styles.class).to be(Hash)
+        expect(Greeter.greeting_styles.keys).to include(:pirate, :victorian, :aussie)
+      end
+    end
+    context 'given an unknown style' do
+      it 'returns an empty string' do
+        expect(Greeter.greeting_styles(:zyx1)).to eq('')
+      end
+    end
+    context 'given a known style' do
+      it 'returns the greeting for that style' do
+        expect(Greeter.greeting_styles(:pirate)).to eq('Yar! Ahoy')
+        expect(Greeter.greeting_styles(:victorian)).to eq('Ever so delightful to meet thee')
+        expect(Greeter.greeting_styles(:aussie)).to eq("G'day")
+      end
+    end
+  end
+
   describe 'Greeter#greet_as' do
     context 'given no options' do
       it 'falls back to 1 argument greet_by_name method' do

@@ -4,7 +4,8 @@ class Greeter
     victorian: 'Ever so delightful to meet thee',
     aussie: "G'day"
   }
-  def self.greeting_styles(style)
+  def self.greeting_styles(style = nil)
+    return @@greeting_styles if style.nil?
     return @@greeting_styles[style] if @@greeting_styles.has_key? style
     ''
   end
